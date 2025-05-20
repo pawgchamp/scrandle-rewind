@@ -20,8 +20,6 @@ async function loadData() {
         let today = getDateToday();
         let pairs = days[today] || [];
 
-        console.log( pairs );
-
         let tweetMap = {};
         tweets.forEach( (tweet) => {
             tweetMap[tweet.id] = tweet;
