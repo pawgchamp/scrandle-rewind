@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <title>Today's Scrandle</title>
+    <style>
+        :root {
+            --text: #333;
+            --bg: #fcfcfc;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #fcfcfc;
+                --bg: #333;
+            }
+        }
+
+        body {
+            font-family: system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        a {
+            color: var(--text);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+        }
+
+        header > * {
+            margin: 0;
+        }
+
+        header p {
+            margin-left: 1em;
+            flex-grow: 1;
+        }
+
+        .pair {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 3em;
+        }
+
+        ol {
+            padding: 0;
+        }
+
+        figure {
+            position: relative;
+            display: flex;
+            max-height: 100vh;
+            margin: 0;
+        }
+
+        figure img {
+            object-fit: contain;
+            width: 100%;
+            height: auto;
+        }
+        
+        figcaption {
+            background: #0007;
+            position: absolute;
+            bottom: 0;
+            padding: 0 1em;
+            width: calc(100% - 2em);
+            color: #fff;
+            text-align: center;
+        }
+
+        body.spoiler .winner-1 figure:nth-child(1) figcaption {
+            background: #0f07;
+            color: var(--text);
+        }
+
+        body.spoiler .winner-2 figure:nth-child(2) figcaption {
+            background: #0f07;
+            color: var(--text);
+        }
+
+        body:not(.spoiler) .rating {
+            display: none;
+        }
+    </style>
+    </head>
+    <body>
+        <header>
+            <h1>Today's Scrandle</h1>
+            <p>Play <a href="https://scrandle.com">Scrandle</a> first!</p>
+            <label class="reveal"><input type="checkbox" class="spoiler-checkbox"> Show results</label>
+        </header>
+        <ol id="content">Loading...</ol>
+        <script src="js/application.js"></script>
+    </body>
+</html>
