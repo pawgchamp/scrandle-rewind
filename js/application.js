@@ -36,10 +36,12 @@ async function loadData() {
             const tweet2 = tweetMap[id2];
 
             if( tweet1.rating > tweet2.rating ){
-                html += `<li class="pair winner-1">`;
+                winnerNumber = 1;
             } else {
-                html += `<li class="pair winner-2">`;
+                winnerNumber = 2;
             }
+            
+            html += `<li class="item-${number} winner-${winnerNumber}">`;
 
             [tweet1, tweet2].forEach((tweet) => {
                 if( tweet ){
@@ -57,8 +59,8 @@ async function loadData() {
                     <figure>
                         <img src="${img}" alt="${name}" />
                         <figcaption>
-                            <p>${number}. ${name}: <strong>${price}</strong></p>
                             <p class="rating">${rating}</p>
+                            <p><span class="number">${number}.</span> ${name}: <strong>${price}</strong></p>
                         </figcaption>
                     </figure>
                     `;
@@ -82,4 +84,33 @@ loadData();
 
 document.querySelector( '.spoiler-checkbox' ).addEventListener( 'click', function(){
     document.body.classList.toggle( 'spoiler' );
+});
+
+
+document.addEventListener('keydown', function (event) {
+  // Only respond if not typing in an input or textarea
+  if (
+    document.activeElement.tagName === 'INPUT' ||
+    document.activeElement.tagName === 'TEXTAREA' ||
+    document.activeElement.isContentEditable
+  ) {
+    return;
+  }
+
+  // Map number row keys to class names
+  const key = event.key;
+  let className = null;
+
+  if (key >= '1' && key <= '9') {
+    className = `item-${key}`;
+  } else if (key === '0') {
+    className = 'item-10';
+  }
+
+  if (className) {
+    const el = document.querySelector(`.${className}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 });

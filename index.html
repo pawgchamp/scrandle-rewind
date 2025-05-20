@@ -20,6 +20,7 @@
             font-family: system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;
             color: var(--text);
             background: var(--bg);
+            margin: 0;
         }
 
         a {
@@ -29,25 +30,41 @@
         header {
             display: flex;
             align-items: center;
+            padding: 1em;
         }
 
         header > * {
             margin: 0;
         }
 
+        header h1 {
+            margin: 0;
+            line-height: 1;
+        }
+
         header p {
-            margin-left: 1em;
+            margin: 0 0 0 1em;
             flex-grow: 1;
         }
 
-        .pair {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            margin-bottom: 3em;
+        .reveal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0.5em;
+            background: #0f07;
         }
 
         ol {
+            margin: 0;
             padding: 0;
+        }
+
+        li {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 3em;
         }
 
         figure {
@@ -90,9 +107,9 @@
     </head>
     <body>
         <header>
-            <h1>Today's Scrandle</h1>
-            <p>Play <a href="https://scrandle.com">Scrandle</a> first!</p>
-            <label class="reveal"><input type="checkbox" class="spoiler-checkbox"> Show results</label>
+            <h1>Today's <a href="https://scrandle.com">Scrandle</a></h1>
+            <p>(Click on page then use num keys to navigate)</p>
+            <label class="reveal"><input type="checkbox" class="spoiler-checkbox"> Reveal results</label>
         </header>
         <ol id="content">Loading...</ol>
         <script src="js/application.js"></script>
