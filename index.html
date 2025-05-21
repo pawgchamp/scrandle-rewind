@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
     <meta charset="UTF-8" />
-    <title>Today's Scrandle</title>
+    <title>Scrandle Rewind</title>
     <style>
         :root {
             --text: #333;
@@ -93,8 +93,14 @@
             display: grid;
             grid-template: 
                 "number title price" 
-                "number subtitle price";
+                "number subtitle price"
+                / fit-content 1fr fit-content;
             gap: 0.5em;
+            text-box: trim-both cap alphabetic;
+        }
+
+        .label p {
+            margin: 0;
         }
 
         .label .number {
@@ -138,8 +144,8 @@
     </head>
     <body>
         <header>
-            <h2>Today's <a href="https://scrandle.com">Scrandle</a></h2>
-            <p>Number-row (1 to 9) to navigate, or left arrow. 😌  - Date: 
+            <h2><a href="https://scrandle.com">Scrandle</a> Rewind</h2>
+            <p>Number-row (1 to 9) to navigate, or left arrow. Choose date: 
                 <select class="date">
                     <option value="2025-05-21">21 May 2025</option>
                     <option value="2025-05-20">20 May 2025</option>
