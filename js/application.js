@@ -11,7 +11,7 @@ function getDateString( date ){
     }
 }
 
-async function loadData() {
+async function loadData( date ) {
     const content = document.querySelector( "#content" );
 
     try {
@@ -22,7 +22,7 @@ async function loadData() {
         let tweets = await tweetsJson.json();
         let days   = await daysJson.json();
 
-        let day   = getDateString();
+        let day   = getDateString( date );
         let pairs = days[day] || [];
 
         let tweetMap = {};
