@@ -82,7 +82,14 @@ async function loadData( date ) {
 
     if( window.location.hash ){
         let skip = window.location.hash.replace( '#', '' );
-        document.querySelector( `.item-${skip}` ).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        requestAnimationFrame(() => {
+            const targetElement = document.querySelector( `.item-${skip}` );
+            if (targetElement) { // Add a check just in case
+                 targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                console.warn(`Could not find element .item-${skip} to scroll into view.`);
+            }
+        });
     }
 }
 
