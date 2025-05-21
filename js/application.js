@@ -1,5 +1,5 @@
 function getDateString( date ){
-    // if date not set just get today's, else get the previous day.
+    // If no date is given, calculate today's in the tweets.json format
     if( date ){
         return date;
     } else {
@@ -124,17 +124,13 @@ document.addEventListener('keydown', function (event) {
 
   if (target !== null) {
     const el = document.querySelector(`.item-${target}`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      currentItem = target; // Update currentItem to the new one
-    }
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    currentItem = target; 
   }
 });
 
-const skipHash = window.location.hash;
-if( skipHash ){
-    skiphash = skipHash.replace( '#', '' );
-    const el = document.querySelector( `.item-${skipHash}` );
-    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+if( window.location.hash ){
+    let skip = widnow.location.hash.replace( '#', '' );
+    document.querySelector( `.item-${skip}` ).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
     
