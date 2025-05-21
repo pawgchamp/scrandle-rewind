@@ -44,7 +44,7 @@ async function loadData( date ) {
                 winnerNumber = 2;
             }
             
-            html += `<li class="item-${number} winner-${winnerNumber}">`;
+            html += `<li class="item-${number} winner-${winnerNumber}" id="${number}">`;
 
             [tweet1, tweet2].forEach((tweet) => {
                 if( tweet ){
@@ -59,7 +59,7 @@ async function loadData( date ) {
                     let price = priceFormatter.format( tweet.price );
 
                     html += `
-                    <figure>
+                    <figure >
                         <img src="${img}" alt="${name}" />
                         <figcaption>
                             <p class="rating">${rating}</p>
