@@ -38,6 +38,9 @@ async function loadData( date ) {
             const tweet1 = tweetMap[id1];
             const tweet2 = tweetMap[id2];
 
+            console.log( 'Tweet 1 URL:', tweet1.url );
+            console.log( 'Tweet 2 URL:', tweet2.url );
+
             if( tweet1.rating > tweet2.rating ){
                 winnerNumber = 1;
             } else {
@@ -48,9 +51,10 @@ async function loadData( date ) {
 
             [tweet1, tweet2].forEach((tweet) => {
                 if( tweet ){
-                    let img    = tweet.images[0];
-                    let name   = tweet.short_desc;
-                    let rating = tweet.rating + '%';
+                    let img      = tweet.images[0];
+                    let title    = tweet.title;
+                    let subtitle = tweet.subtitle;
+                    let rating   = tweet.rating + '%';
 
                     let priceFormatter = new Intl.NumberFormat('en-GB', {
                         style: 'currency',
@@ -59,11 +63,16 @@ async function loadData( date ) {
                     let price = priceFormatter.format( tweet.price );
 
                     html += `
-                    <figure >
+                    <figure>
                         <img src="${img}" alt="${name}" />
                         <figcaption>
                             <p class="rating">${rating}</p>
-                            <p><span class="number">${number}.</span> ${name}: <strong>${price}</strong></p>
+                            <section class="label">
+                                <p class="number">${number}.</p>
+                                <p class="title">${title}</p>
+                                <p class="subtitle">${subtitle}</p>
+                                <p class="price">${price}</p>
+                            </section>
                         </figcaption>
                     </figure>
                     `;
