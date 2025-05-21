@@ -96,16 +96,17 @@
                 "number subtitle price"
                 / max-content 1fr max-content;
             gap: 0.5em;
-          text-box: trim-both cap text;
         }
 
         .label p {
             margin: 0;
+          text-box: trim-both cap text;
         }
 
         .label .number {
             grid-area: number;
             font-size: 2em;
+            align-self: end;
         }
 
         .label .title {
@@ -121,6 +122,7 @@
         .label .price {
             grid-area: price;
             font-weight: bold;
+            align-self: center;
         }   
 
         body.spoiler .winner-1 figure:nth-child(1) figcaption {
