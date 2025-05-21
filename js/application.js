@@ -79,6 +79,11 @@ async function loadData( date ) {
         content.innerHTML = "<p>❌ Error! Beansed it up, couldn't get either the FootyScran tweets in totality or the ones you were meant to see today. Soz.</p>";
         console.error(err);
     }
+
+    if( window.location.hash ){
+        let skip = window.location.hash.replace( '#', '' );
+        document.querySelector( `.item-${skip}` ).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
 }
 
 loadData();
@@ -128,9 +133,4 @@ document.addEventListener('keydown', function (event) {
     currentItem = target; 
   }
 });
-
-if( window.location.hash ){
-    let skip = window.location.hash.replace( '#', '' );
-    document.querySelector( `.item-${skip}` ).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
     
