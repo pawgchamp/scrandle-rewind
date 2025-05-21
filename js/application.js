@@ -133,7 +133,7 @@ document.addEventListener('keydown', function (event) {
 
 const skipHash = window.location.hash;
 if( skipHash ){
-    skipHash.replace( '#', '' );
+    skiphash = skipHash.replace( '#', '' );
     const el = document.querySelector( `.item-${skipHash}` );
     el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
