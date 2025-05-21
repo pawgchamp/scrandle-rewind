@@ -84,11 +84,38 @@
             background: #0007;
             position: absolute;
             bottom: 0;
-            padding: 0 1em;
+            padding: 0.75em;
             width: calc(100% - 2em);
             color: #fff;
-            text-align: center;
         }
+
+        .label {
+            display: grid;
+            grid-template: 
+                "number title price" 
+                "number subtitle price";
+            gap: 0.5em;
+        }
+
+        .label .number {
+            grid-area: number;
+            font-size: 2em;
+        }
+
+        .label .title {
+            grid-area: title;
+            font-size: 1.2em;
+        }
+
+        .label .subtitle {
+            grid-area: subtitle;
+            font-size: 0.7em;
+        }
+
+        .label .price {
+            grid-area: price;
+            font-weight: bold;
+        }   
 
         body.spoiler .winner-1 figure:nth-child(1) figcaption {
             background: #0f07;
