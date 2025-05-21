@@ -130,7 +130,7 @@ document.addEventListener('keydown', function (event) {
 });
 
 if( window.location.hash ){
-    let skip = widnow.location.hash.replace( '#', '' );
+    let skip = window.location.hash.replace( '#', '' );
     document.querySelector( `.item-${skip}` ).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
     
