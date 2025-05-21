@@ -1,9 +1,14 @@
-function getDateToday(){
-    let now   = new Date();
-    let year  = now.getFullYear();
-    let month = String(now.getMonth() + 1).padStart(2, "0");
-    let day   = String(now.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+function getDateString( date ){
+    // if date not set just get today's, else get the previous day.
+    if( date ){
+        return date;
+    } else {
+        let now   = new Date();
+        let year  = now.getFullYear();
+        let month = String(now.getMonth() + 1).padStart(2, "0");
+        let day   = String(now.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
 }
 
 async function loadData() {
@@ -17,8 +22,8 @@ async function loadData() {
         let tweets = await tweetsJson.json();
         let days   = await daysJson.json();
 
-        let today = getDateToday();
-        let pairs = days[today] || [];
+        let day   = getDateString();
+        let pairs = days[day] || [];
 
         let tweetMap = {};
         tweets.forEach( (tweet) => {
@@ -77,6 +82,11 @@ async function loadData() {
 }
 
 loadData();
+
+document.querySelector('.date').addEventListener('change', function(e){
+    let date = e.target.value;
+    loadData( date );
+});
 
 
 
