@@ -84,31 +84,40 @@ document.querySelector( '.spoiler-checkbox' ).addEventListener( 'click', functio
     document.body.classList.toggle( 'spoiler' );
 });
 
+let currentItem = 1;
 
 document.addEventListener('keydown', function (event) {
-  // Only respond if not typing in an input or textarea
+  const ae = document.activeElement;
   if (
-    document.activeElement.tagName === 'INPUT' ||
-    document.activeElement.tagName === 'TEXTAREA' ||
-    document.activeElement.isContentEditable
-  ) {
+    ae.tagName === 'INPUT' ||
+    ae.tagName === 'TEXTAREA' ||
+    ae.isContentEditable
+  )
     return;
-  }
 
-  // Map number row keys to class names
+  let target = null;
   const key = event.key;
-  let className = null;
 
   if (key >= '1' && key <= '9') {
-    className = `item-${key}`;
+    target = parseInt(key, 10);
   } else if (key === '0') {
-    className = 'item-10';
+    target = 10;
+  } else if (key === 'ArrowRight') {
+    console.log('v');
+    // Always advance to the next item, even if the user hasn't scrolled yet
+    if (currentItem < 10) {
+      target = currentItem + 1;
+    } else {
+      return; // Already at item-10, do nothing
+    }
   }
 
-  if (className) {
-    const el = document.querySelector(`.${className}`);
+  if (target !== null) {
+    const el = document.querySelector(`.item-${target}`);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        console.log( 'Scrolling to', target );
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      currentItem = target; // Update currentItem to the new one
     }
   }
 });
