@@ -125,9 +125,16 @@ document.addEventListener('keydown', function (event) {
   if (target !== null) {
     const el = document.querySelector(`.item-${target}`);
     if (el) {
-        console.log( 'Scrolling to', target );
       el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       currentItem = target; // Update currentItem to the new one
     }
   }
 });
+
+const skipHash = window.location.hash;
+if( skipHash ){
+    skipHash.replace( '#', '' );
+    const el = document.querySelector( `.item-${skipHash}` );
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+    
