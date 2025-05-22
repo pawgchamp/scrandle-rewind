@@ -69,7 +69,7 @@ async function loadData( date ) {
                         <figcaption>
                             <p class="rating">${rating}</p>
                             <section class="label">
-                                <p class="number">${number}.</p>
+                                <p class="number">${number}</p>
                                 <p class="title">${title}</p>
                                 <p class="subtitle">${subtitle} •︎ ${country}</p>
                                 <p class="price">${price}</p>
