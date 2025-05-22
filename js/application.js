@@ -55,6 +55,7 @@ async function loadData( date ) {
                     let title    = tweet.title;
                     let subtitle = tweet.subtitle;
                     let rating   = tweet.rating + '%';
+                    let club_name  = tweet.club_name; // barf
                     let country  = tweet.country;
 
                     let priceFormatter = new Intl.NumberFormat('en-GB', {
