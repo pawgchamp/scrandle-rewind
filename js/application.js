@@ -87,7 +87,7 @@ async function loadData( date ) {
 
         content.innerHTML = html;
     } catch (err) {
-        content.innerHTML = "<p>❌ Error! Beansed it up, couldn't get either the FootyScran tweets in totality or the ones you were meant to see today. Soz.</p>";
+        content.innerHTML = "<p>❌ Error! Beansed it up, something went wrong. Yell at me about it, please.</p>";
         console.error(err);
     }
 
@@ -111,44 +111,38 @@ document.querySelector('.date').addEventListener('change', function(e){
     loadData( date );
 });
 
-
-
 document.querySelector( '.spoiler-checkbox' ).addEventListener( 'click', function(){
     document.body.classList.toggle( 'spoiler' );
 });
 
 let currentItem = 1;
 
-document.addEventListener('keydown', function (event) {
-  const ae = document.activeElement;
-  if (
-    ae.tagName === 'INPUT' ||
-    ae.tagName === 'TEXTAREA' ||
-    ae.isContentEditable
-  )
-    return;
-
+document.addEventListener("keydown", function (event) {
+  const ae   = document.activeElement;
   let target = null;
-  const key = event.key;
+  const key  = event.key;
+    
+  const modifierPressed = event.ctrlKey || event.altKey || event.metaKey;
 
-  if (key >= '1' && key <= '9') {
-    target = parseInt(key, 10);
-  } else if (key === '0') {
-    target = 10;
-  } else if (key === 'ArrowRight') {
-    console.log('v');
-    // Always advance to the next item, even if the user hasn't scrolled yet
-    if (currentItem < 10) {
+  if( key >= "1" && key <= "9" ){
+    if( ! modifierPressed ){
+      target = parseInt(key, 10);
+    }
+  } else if( key === "0" ){
+    if( ! modifierPressed ){
+      target = 10;
+    }
+  } else if( key === "ArrowRight" ){
+    if( currentItem < 10 ){
       target = currentItem + 1;
-    } else {
-      return; // Already at item-10, do nothing
     }
   }
 
-  if (target !== null) {
+  if( target !== null ){
     const el = document.querySelector(`.item-${target}`);
-    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    currentItem = target; 
+    if( el ){
+      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      currentItem = target;
+    }
   }
-});
-    
+}); 
