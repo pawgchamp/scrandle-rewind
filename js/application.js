@@ -55,6 +55,7 @@ async function loadData( date ) {
                     let title    = tweet.title;
                     let subtitle = tweet.subtitle;
                     let rating   = tweet.rating + '%';
+                    let country  = tweet.country;
 
                     let priceFormatter = new Intl.NumberFormat('en-GB', {
                         style: 'currency',
@@ -70,7 +71,7 @@ async function loadData( date ) {
                             <section class="label">
                                 <p class="number">${number}.</p>
                                 <p class="title">${title}</p>
-                                <p class="subtitle">${subtitle}</p>
+                                <p class="subtitle">${subtitle} •︎ ${country}</p>
                                 <p class="price">${price}</p>
                             </section>
                         </figcaption>
