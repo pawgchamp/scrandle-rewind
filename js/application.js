@@ -71,7 +71,7 @@ async function loadData( date ) {
                             <section class="label">
                                 <p class="number">${number}</p>
                                 <p class="title">${title}</p>
-                                <p class="subtitle">${subtitle} •︎ ${country}</p>
+                                <p class="subtitle">${subtitle} •︎ ${club_name}, ${country}</p>
                                 <p class="price">${price}</p>
                             </section>
                         </figcaption>
