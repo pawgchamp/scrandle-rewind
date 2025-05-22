@@ -93,9 +93,12 @@ async function loadData( date ) {
 
     if( window.location.hash ){
         let skip = window.location.hash.replace( '#', '' );
+        console.log( 'Hash given:', skip );
+        
         requestAnimationFrame(() => {
             const targetElement = document.querySelector( `.item-${skip}` );
             if (targetElement) { // Add a check just in case
+                console.log( 'Target element was found, scrolling it into view.' );
                  targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } else {
                 console.warn(`Could not find element .item-${skip} to scroll into view.`);
