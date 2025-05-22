@@ -139,10 +139,24 @@
 
         .rating {
             font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 0.25em;
         }
 
         body:not(.spoiler) .rating {
             display: none;
+        }
+
+        footer {
+            padding: 1em;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        footer .gigasmall {
+            font-size: 0.1em;
         }
     </style>
     </head>
@@ -163,6 +177,7 @@
             <label class="reveal"><input type="checkbox" class="spoiler-checkbox"> Reveal results</label>
         </header>
         <ol id="content"></ol>
+        <footer>Made with lots of love by your friendly neighbourhood droid. <span class="gigasmall">post peepoD at me if you see this</span></footer>
         <script src="js/application.js"></script>
     </body>
 </html>
