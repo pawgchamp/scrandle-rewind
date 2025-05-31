@@ -2,7 +2,7 @@ name: Update date
 
 on:
   schedule:
-    - cron: '0 5 * * *' # 5:00 AM UTC every day
+    - cron: '0 5 * * *' # 5:00 AM UTC
   workflow_dispatch: 
 
 jobs:
@@ -16,9 +16,7 @@ jobs:
     - name: Update date
       run: |
         TODAY=$(date -u +"%Y-%m-%d")
-        
         TODAY_DISPLAY=$(date -u +"%d %b %Y")
-        
         NEW_OPTION="                    <option value=\"$TODAY\">$TODAY_DISPLAY</option>"
         
         sed -i "/<select class=\"date\">/a\\$NEW_OPTION" index.html
@@ -55,6 +53,6 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Today's date - $(date -u +"%Y-%m-%d")"
+          git commit -m "Add $(date -u +"%Y-%m-%d")"
           git push
         fi
