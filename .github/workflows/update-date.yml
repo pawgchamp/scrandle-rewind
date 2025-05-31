@@ -1,0 +1,60 @@
+name: Update date
+
+on:
+  schedule:
+    - cron: '0 5 * * *' # 5:00 AM UTC every day
+  workflow_dispatch: 
+
+jobs:
+  update-date:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Update date
+      run: |
+        TODAY=$(date -u +"%Y-%m-%d")
+        
+        TODAY_DISPLAY=$(date -u +"%d %b %Y")
+        
+        NEW_OPTION="                    <option value=\"$TODAY\">$TODAY_DISPLAY</option>"
+        
+        sed -i "/<select class=\"date\">/a\\$NEW_OPTION" index.html
+        
+        awk '
+        /<select class="date">/ { 
+            print; 
+            option_count = 0; 
+            in_select = 1; 
+            next 
+        }
+        /<\/select>/ && in_select { 
+            print; 
+            in_select = 0; 
+            next 
+        }
+        in_select && /option value/ { 
+            if (option_count < 15) {
+                print; 
+                option_count++
+            }
+            next
+        }
+        !in_select { print }
+        in_select && !/option value/ { print }
+        ' index.html > temp.html && mv temp.html index.html
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add index.html
+        
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Today's date - $(date -u +"%Y-%m-%d")"
+          git push
+        fi
