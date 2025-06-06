@@ -109,9 +109,13 @@ async function loadData( date ) {
 
 loadData();
 
-document.querySelector('.date').addEventListener('change', function(e){
-    let date = e.target.value;
-    loadData( date );
+const dateSelect = document.querySelector( '.date' );
+let lastDate     = dateSelect.value;
+dateSelect.addEventListener('change', function(e){
+    const selectedDate = dateSelect.options[dateSelect.selectedIndex].value;
+    lastDate           = selectedDate;
+    
+    loadData( selectedDate );
 });
 
 document.querySelector( '.spoiler-checkbox' ).addEventListener( 'click', function(){
