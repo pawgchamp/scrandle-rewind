@@ -19,7 +19,8 @@ jobs:
         TODAY_DISPLAY=$(date -u +"%d %b %Y")
         NEW_OPTION="                    <option value=\"$TODAY\">$TODAY_DISPLAY</option>"
         
-        sed -i "/<select class=\"date\">/a\\$NEW_OPTION" index.html
+        sed -i "/<select class=\"date\">/,/<option.*disabled/ { /<option.*disabled/a\\$NEW_OPTION
+        }" index.html
         
         awk '
         /<select class="date">/ { 
@@ -31,6 +32,10 @@ jobs:
         /<\/select>/ && in_select { 
             print; 
             in_select = 0; 
+            next 
+        }
+        in_select && /<option.*disabled/ { 
+            print; 
             next 
         }
         in_select && /option value/ { 
